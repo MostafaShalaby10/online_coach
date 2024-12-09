@@ -11,8 +11,10 @@ Widget textField({
   required IconData prefixIcon,
   IconData? suffixIcon,
   Function()? suffixIconFunction,
+   required TextEditingController controller ,
 }) {
   return TextFormField(
+    controller: controller,
     validator: (value) {
       if (value!.isEmpty) {
         return "$label Can't be empty";
@@ -88,13 +90,12 @@ Future<bool?> toastMSG({required String text, required Color color}) {
   return Fluttertoast.showToast(
       msg: text,
       toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.CENTER,
+      gravity: ToastGravity.BOTTOM,
       timeInSecForIosWeb: 1,
       backgroundColor: color,
       textColor: Colors.white,
       fontSize: 16.0);
 }
-
 Future moveForward({required BuildContext context, required Widget page}) {
   return Navigator.push(context, MaterialPageRoute(builder: (context) => page));
 }
