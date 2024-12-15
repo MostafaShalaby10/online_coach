@@ -1,16 +1,18 @@
 # online_coach
 
-an app for online coach
+App for online coach
 
-## Getting Started
+## What app does: 
 
-This project is a starting point for a Flutter application.
+### Admin roles =>
 
-A few resources to get you started if this is your first Flutter project:
+- Admin can see personal data of his client
+- Admin can create user account
+- Admin can add daily exercises for his client
+- Admin can add daily meals for his client
+- Admin can add supplements for his client
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### User roles => 
+- User can enter his personal data and his gym history when he use the app for first time
+- User can see exercises and meals for each day
+  
