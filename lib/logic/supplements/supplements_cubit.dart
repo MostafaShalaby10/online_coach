@@ -13,7 +13,6 @@ class SupplementsCubit extends Cubit<SupplementsState> {
 
   Map<String, dynamic> supplementsDataSingle = {};
   void addSupplementsCubit({required String userId,
-    required String day,
     required List data}) {
     emit(LoadingAddSupplementsState());
     supplementsData.addAll(data);
@@ -33,7 +32,6 @@ class SupplementsCubit extends Cubit<SupplementsState> {
 
   Future getSupplementsCubit({
     required String userId,
-    required String day,
   }) {
     emit(LoadingGetSupplementsState());
     return FirebaseFirestore.instance

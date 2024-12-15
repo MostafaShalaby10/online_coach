@@ -10,13 +10,13 @@ import 'package:online_coach/shared/components/components.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ShowExercise extends StatelessWidget {
-  final String type;
   final String day;
+  final bool isAdmin ;
 
   final String uid;
 
   const ShowExercise(
-      {super.key, required this.type, required this.uid, required this.day});
+      {super.key, required this.uid, required this.day, required this.isAdmin});
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +66,8 @@ class ShowExercise extends StatelessWidget {
                                         .length),
                               ),
                             if (ExerciseCubit.get(context).exerciseData.isEmpty)
-                              text(text: "There is no exercises"),
+                              Center(child: text(text: "There is no exercises yet\n coooming soon!!" , fontSize: 25 , fontColor: Colors.green)),
+                            if(isAdmin)
                             Center(
                                 child: SizedBox(
                                     width: MediaQuery.of(context).size.width,

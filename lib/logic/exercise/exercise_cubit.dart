@@ -14,7 +14,6 @@ class ExerciseCubit extends Cubit<ExerciseState> {
 
     exerciseData.addAll(data);
 
-
     FirebaseFirestore.instance
         .collection("Users")
         .doc(userId) /*User id*/
@@ -37,22 +36,20 @@ class ExerciseCubit extends Cubit<ExerciseState> {
   }) {
     emit(LoadingGetExerciseState());
 
-      return FirebaseFirestore.instance
-          .collection("Users")
-          .doc(userId)
-          .collection("Exercise")
-          .doc("Day $day")
-          .get()
-          .then((value) {
-        exerciseDataSingle = value.data()!;
-        exerciseData.addAll({exerciseDataSingle["data"]});
-        emit(SuccessfullyGetExerciseState());
-      }).catchError((error) {
-        exerciseData = [];
+    return FirebaseFirestore.instance
+        .collection("Users")
+        .doc(userId)
+        .collection("Exercise")
+        .doc("Day $day")
+        .get()
+        .then((value) {
+      exerciseDataSingle = value.data()!;
+      exerciseData.addAll({exerciseDataSingle["data"]});
+      emit(SuccessfullyGetExerciseState());
+    }).catchError((error) {
+      exerciseData = [];
 
-        emit(ErrorGetExerciseState(error.toString()));
-      });
-    }
-
-
+      emit(ErrorGetExerciseState(error.toString()));
+    });
+  }
 }

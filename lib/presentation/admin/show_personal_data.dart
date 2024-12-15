@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_coach/logic/personal_data/personal_data_cubit.dart';
-import 'package:online_coach/main.dart';
-import 'package:online_coach/presentation/shared/show_exercise.dart';
 import 'package:online_coach/presentation/shared/days.dart';
+import 'package:online_coach/presentation/shared/show_supplements.dart';
 import 'package:online_coach/shared/components/components.dart';
 
 class ShowPersonalData extends StatelessWidget {
@@ -20,7 +19,6 @@ class ShowPersonalData extends StatelessWidget {
           PersonalDataCubit()..getPersonalDataCubit(userId: userId),
       child: BlocConsumer<PersonalDataCubit, PersonalDataState>(
           builder: (context, state) {
-            print(PersonalDataCubit.get(context).userPersonalData);
             return Scaffold(
               appBar: AppBar(),
               body: ConditionalBuilder(
@@ -85,8 +83,9 @@ class ShowPersonalData extends StatelessWidget {
                                         moveForward(
                                           context: context,
                                           page: Days(
-                                            type: "admin",
+                                            isExercise: true,
                                             uid: userId,
+                                            isAdmin: true,
                                           ),
                                         );
                                       }),
@@ -101,7 +100,14 @@ class ShowPersonalData extends StatelessWidget {
                                           label: "Food",
                                           fontSize: 20,
                                           function: () {
-
+                                            moveForward(
+                                              context: context,
+                                              page: Days(
+                                                isExercise: false,
+                                                uid: userId,
+                                                isAdmin: true,
+                                              ),
+                                            );
                                           }))),
                               verticalSpace(space: 10),
                               Center(
@@ -111,7 +117,14 @@ class ShowPersonalData extends StatelessWidget {
                                       child: defaultButton(
                                           label: "Supplements",
                                           fontSize: 20,
-                                          function: () {}))),
+                                          function: () {
+                                            moveForward(
+                                                context: context,
+                                                page: ShowSupplements(
+                                                  uid: userId,
+                                                  isAdmin: true,
+                                                ));
+                                          }))),
                             ],
                           ),
                         ),

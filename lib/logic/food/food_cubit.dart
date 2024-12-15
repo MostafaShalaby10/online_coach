@@ -12,39 +12,44 @@ class FoodCubit extends Cubit<FoodState> {
 
   void addFoodCubit({required String userId,
     required String day,
-    required Map<String, dynamic> data}) {
+    required String mealType,
+    required List data}) {
     emit(LoadingAddFoodState());
+    foodData.addAll({mealType: data});
     FirebaseFirestore.instance
-        .collection("users")
+        .collection("Users")
         .doc(userId) /*User id*/
         .collection("Food")
         .doc("Day $day") /* Which Day*/
-        .set(data)
+        .set({mealType : data})
         .then((value) {
       emit(SuccessfullyAddFoodState());
     }).catchError((error) {
       emit(ErrorAddFoodState(error));
     });
   }
- Map<String , dynamic>? foodData ;
-  Future getFoodCubit({
+ Map<String , dynamic> foodData={} ;
+  Future? getFoodCubit({
     required String userId,
     required String day,
-  }) {
-    foodData = {};
+  })  {
     emit(LoadingGetFoodState());
+
     return FirebaseFirestore.instance
-        .collection("users")
+        .collection("Users")
         .doc(userId)
         .collection("Food")
         .doc("Day $day")
         .get()
         .then((value) {
-          foodData=value.data();
+      foodData = value.data()!;
+      print(foodData);
+      // exerciseData.addAll({exerciseDataSingle["data"]});
       emit(SuccessfullyGetFoodState());
     }).catchError((error) {
       foodData = {};
-      emit(ErrorGetFoodState(error));
+
+      emit(ErrorGetFoodState(error.toString()));
     });
   }
 }
