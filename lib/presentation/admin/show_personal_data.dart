@@ -1,7 +1,6 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_coach/logic/personal_data/personal_data_cubit.dart';
 import 'package:online_coach/presentation/shared/days.dart';
 import 'package:online_coach/presentation/shared/show_supplements.dart';
@@ -38,7 +37,7 @@ class ShowPersonalData extends StatelessWidget {
                                       children: [
                                         text(
                                             text:
-                                                "Weight : ${PersonalDataCubit.get(context).userPersonalData!["weigh"]}"),
+                                                "Weight : ${PersonalDataCubit.get(context).userPersonalData!["weight"]}"),
                                         text(
                                             text:
                                                 "Tall : ${PersonalDataCubit.get(context).userPersonalData!["tall"]}"),
@@ -72,59 +71,45 @@ class ShowPersonalData extends StatelessWidget {
                                       fontSize: 20,
                                     ),
                               verticalSpace(space: 100),
-                              Center(
-                                child: SizedBox(
-                                  height: 60.h,
-                                  width: MediaQuery.of(context).size.width,
-                                  child: defaultButton(
-                                      label: "Exercise",
-                                      fontSize: 20,
-                                      function: () {
-                                        moveForward(
-                                          context: context,
-                                          page: Days(
-                                            isExercise: true,
-                                            uid: userId,
-                                            isAdmin: true,
-                                          ),
-                                        );
-                                      }),
-                                ),
-                              ),
+                              defaultButton(context ,
+                                  label: "Exercise",
+                                  fontSize: 20,
+                                  function: () {
+                                    moveForward(
+                                      context: context,
+                                      page: Days(
+                                        isExercise: true,
+                                        uid: userId,
+                                        isAdmin: true,
+                                      ),
+                                    );
+                                  }),
                               verticalSpace(space: 10),
-                              Center(
-                                  child: SizedBox(
-                                      height: 60.h,
-                                      width: MediaQuery.of(context).size.width,
-                                      child: defaultButton(
-                                          label: "Food",
-                                          fontSize: 20,
-                                          function: () {
-                                            moveForward(
-                                              context: context,
-                                              page: Days(
-                                                isExercise: false,
-                                                uid: userId,
-                                                isAdmin: true,
-                                              ),
-                                            );
-                                          }))),
+                              defaultButton(context ,
+                                  label: "Food",
+                                  fontSize: 20,
+                                  function: () {
+                                    moveForward(
+                                      context: context,
+                                      page: Days(
+                                        isExercise: false,
+                                        uid: userId,
+                                        isAdmin: true,
+                                      ),
+                                    );
+                                  }),
                               verticalSpace(space: 10),
-                              Center(
-                                  child: SizedBox(
-                                      height: 60.h,
-                                      width: MediaQuery.of(context).size.width,
-                                      child: defaultButton(
-                                          label: "Supplements",
-                                          fontSize: 20,
-                                          function: () {
-                                            moveForward(
-                                                context: context,
-                                                page: ShowSupplements(
-                                                  uid: userId,
-                                                  isAdmin: true,
-                                                ));
-                                          }))),
+                              defaultButton(context ,
+                                  label: "Supplements",
+                                  fontSize: 20,
+                                  function: () {
+                                    moveForward(
+                                        context: context,
+                                        page: ShowSupplements(
+                                          uid: userId,
+                                          isAdmin: true,
+                                        ));
+                                  }),
                             ],
                           ),
                         ),

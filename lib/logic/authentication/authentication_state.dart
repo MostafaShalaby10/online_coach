@@ -19,3 +19,11 @@ final class ErrorCreateAccountState extends AUTHState {
   final String error ;
   ErrorCreateAccountState(this.error);
 }
+
+final class LoadingResetPasswordState extends AUTHState {}
+final class SuccessfullyResetPasswordState extends AUTHState {}
+final class ErrorResetPasswordState extends AUTHState {
+  final String error ;
+  ErrorResetPasswordState(this.error);
+}
+

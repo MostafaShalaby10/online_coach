@@ -1,6 +1,5 @@
 part of 'personal_data_cubit.dart';
 
-@immutable
 sealed class PersonalDataState {}
 
 final class PersonalDataInitial extends PersonalDataState {}

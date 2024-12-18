@@ -58,18 +58,24 @@ Widget text({
   );
 }
 
-Widget defaultButton(
+Widget defaultButton(context ,
     {required String label,
     required double fontSize,
+      Color ?color  ,
     required Function() function}) {
-  return MaterialButton(
-    shape: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-    padding: const EdgeInsets.all(10),
-    color: secondaryColor,
-    onPressed: function,
-    child: Text(
-      label,
-      style: TextStyle(fontSize: fontSize.sp),
+  return Center(
+    child: SizedBox(
+      width: MediaQuery.of(context).size.width,
+      child: MaterialButton(
+        shape: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+        padding: const EdgeInsets.all(10),
+        color: color??secondaryColor,
+        onPressed: function,
+        child: Text(
+          label,
+          style: TextStyle(fontSize: fontSize.sp),
+        ),
+      ),
     ),
   );
 }

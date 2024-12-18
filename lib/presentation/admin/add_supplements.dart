@@ -46,28 +46,25 @@ class AddSupplements extends StatelessWidget {
                   verticalSpace(space: 10),
                   ConditionalBuilder(
                       condition: state is! LoadingAddSupplementsState,
-                      builder: (context) => Center(
-                          child: SizedBox(
-                              width: MediaQuery.of(context).size.width,
-                              child: defaultButton(
-                                  label: "Save",
-                                  fontSize: 20,
-                                  function: () {
-                                    if (formKey.currentState!.validate()) {
-                                      SupplementsCubit.get(context)
-                                          .addSupplementsCubit(
-                                              userId: uid,
-                                              data: [
-                                            {
-                                              "supplementsName":
-                                                  supplementsController.text,
-                                              "quantity":
-                                                  supplementsQuantityController
-                                                      .text
-                                            }
-                                          ]);
+                      builder: (context) => defaultButton(context ,
+                          label: "Save",
+                          fontSize: 20,
+                          function: () {
+                            if (formKey.currentState!.validate()) {
+                              SupplementsCubit.get(context)
+                                  .addSupplementsCubit(
+                                      userId: uid,
+                                      data: [
+                                    {
+                                      "supplementsName":
+                                          supplementsController.text,
+                                      "quantity":
+                                          supplementsQuantityController
+                                              .text
                                     }
-                                  }))),
+                                  ]);
+                            }
+                          }),
                       fallback: (context) =>
                           const Center(child: CircularProgressIndicator()))
                 ],

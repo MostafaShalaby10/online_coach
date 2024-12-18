@@ -4,21 +4,28 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_coach/logic/food/food_cubit.dart';
 import 'package:online_coach/shared/components/components.dart';
 
-class AddFood extends StatelessWidget {
+class AddFood extends StatefulWidget {
   final String uID;
 
   final String day;
 
-  AddFood({super.key, required this.uID, required this.day});
+  const AddFood({super.key, required this.uID, required this.day});
 
+  @override
+  State<AddFood> createState() => _AddFoodState();
+}
+
+class _AddFoodState extends State<AddFood> {
   final formKey = GlobalKey<FormState>();
-  final TextEditingController mealTypeController = TextEditingController();
+
   final TextEditingController mealController = TextEditingController();
+  String dropdownValue = 'breakfast';
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => FoodCubit()..getFoodCubit(userId: uID, day: day),
+      create: (context) =>
+          FoodCubit()..getFoodCubit(userId: widget.uID, day: widget.day),
       child: BlocConsumer<FoodCubit, FoodState>(builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
@@ -31,35 +38,45 @@ class AddFood extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  textField(
-                      type: TextInputType.text,
-                      label: "Add meal type",
-                      prefixIcon: Icons.fastfood_outlined,
-                      controller: mealTypeController),
-                  verticalSpace(space: 10),
+                  DropdownButton<String>(
+                    value: dropdownValue,
+                    items: <String>['breakfast', 'lunch', 'dinner']
+                        .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(
+                          value,
+                          style: const TextStyle(fontSize: 24),
+                        ),
+                      );
+                    }).toList(),
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        dropdownValue = newValue!;
+                      });
+                    },
+                  ),
+                  verticalSpace(space: 20),
                   textField(
                       type: TextInputType.text,
                       label: "Add the meal",
                       prefixIcon: Icons.fastfood_outlined,
                       controller: mealController),
-                  verticalSpace(space: 10),
+                  verticalSpace(space: 20),
                   ConditionalBuilder(
                       condition: state is! LoadingAddFoodState,
-                      builder: (context) => Center(
-                          child: SizedBox(
-                              width: MediaQuery.of(context).size.width,
-                              child: defaultButton(
-                                  label: "Save",
-                                  fontSize: 20,
-                                  function: () {
-                                    if (formKey.currentState!.validate()) {
-                                      FoodCubit.get(context).addFoodCubit(
-                                          userId: uID,
-                                          day: day,
-                                          data: [mealController.text],
-                                          mealType: mealTypeController.text);
-                                    }
-                                  }))),
+                      builder: (context) => defaultButton(context,
+                          label: "Save",
+                          fontSize: 20,
+                          function: () {
+                            if (formKey.currentState!.validate()) {
+                              FoodCubit.get(context).addFoodCubit(
+                                  userId: widget.uID,
+                                  day: widget.day,
+                                  data: [mealController.text],
+                                  mealType: dropdownValue);
+                            }
+                          }),
                       fallback: (context) =>
                           const Center(child: CircularProgressIndicator())),
                 ],

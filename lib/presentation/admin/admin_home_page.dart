@@ -1,9 +1,6 @@
-import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:online_coach/logic/userData/user_data_cubit.dart';
 import 'package:online_coach/presentation/admin/add_user.dart';
 import 'package:online_coach/presentation/admin/all_users.dart';
 import 'package:online_coach/presentation/authentication/login.dart';
@@ -47,30 +44,24 @@ class AdminHomePage extends StatelessWidget {
             children: [
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 10.h),
-                child: SizedBox(
-                    width: 300.w,
-                    height: 70.h,
-                    child: defaultButton(
-                        label: "All Users",
-                        fontSize: 30,
-                        function: () {
-                          /* not finished*/
-                       moveForward(context: context, page: const AllUsers()) ;
-                        })),
+                child: defaultButton(context ,
+                    label: "All Users",
+                    fontSize: 30,
+                    function: () {
+                      /* not finished*/
+                   moveForward(context: context, page: const AllUsers()) ;
+                    }),
               ),
               verticalSpace(space: 15),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 10.h),
-                child: SizedBox(
-                    width: 300.w,
-                    height: 70.h,
-                    child: defaultButton(
-                        label: "Add User",
-                        fontSize: 30,
-                        function: () {
-                          moveForward(
-                              context: context, page: const Adduser());
-                        })),
+                child: defaultButton(context ,
+                    label: "Add User",
+                    fontSize: 30,
+                    function: () {
+                      moveForward(
+                          context: context, page: const Adduser());
+                    }),
               ),
             ],
           ),

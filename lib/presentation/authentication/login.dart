@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_coach/logic/authentication/authentication_cubit.dart';
 import 'package:online_coach/presentation/admin/admin_home_page.dart';
+import 'package:online_coach/presentation/authentication/reset_password.dart';
 import 'package:online_coach/presentation/user/user_home_page.dart';
 import 'package:online_coach/shared/components/components.dart';
 import 'package:online_coach/shared/constants/constants.dart';
 import 'package:online_coach/shared/shared_preferences/shared_preferences.dart';
 
-import '../../shared/components/components.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -79,25 +79,25 @@ class _LoginState extends State<Login> {
                     verticalSpace(space: 40),
                     ConditionalBuilder(
                         condition: state is! LoadingLoginState,
-                        builder: (context) => Center(
-                            child: SizedBox(
-                                width: MediaQuery.of(context).size.width,
-                                child: defaultButton(
-                                    label: "Login",
-                                    fontSize: 20,
-                                    function: () {
-                                      if (formKey.currentState!.validate()) {
-                                        AUTHCubit.get(context)
-                                            .loginCubitFunction(
-                                                email: emailController.text,
-                                                password:
-                                                    passwordController.text);
-                                      }
-                                    }))),
+                        builder: (context) => defaultButton(context,
+                            label: "Login",
+                            fontSize: 20,
+                            function: () {
+                              if (formKey.currentState!.validate()) {
+                                AUTHCubit.get(context)
+                                    .loginCubitFunction(
+                                        email: emailController.text,
+                                        password:
+                                            passwordController.text);
+                              }
+                            }),
                         fallback: (context) =>
                             const Center(child: CircularProgressIndicator())),
                     verticalSpace(space: 15),
-
+        Center(child: TextButton(onPressed: (){
+          moveForward(context: context, page: ResetPassword());
+        }, child: text(text: "Reset password" , fontSize: 17 , fontWeight: FontWeight.bold ,fontColor: Colors.red  ))) ,
+                    
                     /*    Center(
                         child: TextButton(
 

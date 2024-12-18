@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_coach/model/user_data_model.dart';
-import 'package:online_coach/shared/shared_preferences/shared_preferences.dart';
 
 part 'user_data_state.dart';
 
@@ -9,16 +9,7 @@ class UserDataCubit extends Cubit<UserDataState> {
   UserDataCubit() : super(UserDataInitial());
 
   static UserDataCubit get(context) => BlocProvider.of(context);
-
-  // Future saveUserData({required Map<String , dynamic> data}) {
-  //   emit(LoadingSaveUserDataState());
-  //   return FirebaseFirestore.instance.collection("Users").doc().set(data).then((value) {
-  //     emit(SuccessfullySaveUserDataState());
-  //   }).catchError((error) {
-  //     emit(ErrorSaveUserDataState(error.toString()));
-  //   });
-  // }
-  late List<dynamic> usersData ;
+  late List<dynamic> usersData;
 
   UserDataModel? userDataModel;
 
@@ -32,11 +23,48 @@ class UserDataCubit extends Cubit<UserDataState> {
       for (var element in value.docs) {
         usersData.add(UserDataModel.fromJson(element.data()));
       }
-      // print(usersData.length);
-      print("success");
       emit(SuccessfullyGetUserDataState());
     }).catchError((error) {
       emit(ErrorGetUserDataState(error.toString()));
+    });
+  }
+
+  Map<String, dynamic> specificUserData = {};
+
+  Future getSpecificUserData({required String id}) async {
+    specificUserData = {};
+    emit(LoadingGetSpecificUserDataState());
+    return await FirebaseFirestore.instance
+        .collection("Users")
+        .doc(id)
+        .get()
+        .then((value) {
+      specificUserData = value.data()!;
+      emit(SuccessfullyGetSpecificUserDataState());
+    }).catchError((error) {
+      emit(ErrorGetSpecificUserDataState(error.toString()));
+    });
+  }
+
+  void deleteCurrentUser({required id}) async {
+    emit(LoadingDeleteCurrentAccountState());
+    await FirebaseAuth.instance.currentUser!.delete().then((value) async {
+      await FirebaseFirestore.instance.collection("Users").doc(id).delete();
+      await FirebaseFirestore.instance.runTransaction((transaction) async =>
+          transaction
+              .delete(FirebaseFirestore.instance.collection("Users").doc(id)));
+      emit(SuccessfullyDeleteCurrentAccountState());
+    }).catchError((error) {
+      emit(ErrorDeleteCurrentAccountState(error));
+    });
+  }
+
+  void updatePassword({required String password}) {
+    emit(LoadingUpdatePasswordState());
+    FirebaseAuth.instance.currentUser!.updatePassword(password).then((value) {
+      emit(SuccessfullyUpdatePasswordState());
+    }).catchError((error) {
+      emit(ErrorUpdatePasswordState(error));
     });
   }
 }

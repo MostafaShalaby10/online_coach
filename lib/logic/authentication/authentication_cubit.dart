@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_coach/model/user_data_model.dart';
 import 'package:online_coach/shared/shared_preferences/shared_preferences.dart';
@@ -48,6 +47,16 @@ class AUTHCubit extends Cubit<AUTHState> {
       emit(ErrorCreateAccountState(error.toString()));
     });
   }
+
+  void resetPasswordCubit({required String email}) {
+    emit(LoadingResetPasswordState());
+    FirebaseAuth.instance.sendPasswordResetEmail(email: email).then((value) {
+      emit(SuccessfullyResetPasswordState());
+    }).catchError((error) {
+      emit(ErrorResetPasswordState(error.toString()));
+    });
+  }
+
 
 // End of class
 }

@@ -3,9 +3,7 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_coach/logic/authentication/authentication_cubit.dart';
-import 'package:online_coach/main.dart';
 import 'package:online_coach/shared/components/components.dart';
 
 class Adduser extends StatefulWidget {
@@ -86,32 +84,30 @@ class _AdduserState extends State<Adduser> {
                       verticalSpace(space: 20),
                       ConditionalBuilder(
                           condition: state is! LoadingCreateAccountState,
-                          builder: (context) => SizedBox(
-                              width: MediaQuery.of(context).size.width,
-                              child: defaultButton(
-                                  label: "Add",
-                                  fontSize: 20,
-                                  function: () {
-                                    if (formKey.currentState!.validate()) {
-                                      if (passwordController.text.length > 5) {
-                                        if (kDebugMode) {
-                                          print(state.toString());
-                                        }
-                                        AUTHCubit.get(context)
-                                            .createAnAccountCubitFunction(
-                                                name: nameController.text,
-                                                phone: phoneController.text,
-                                                email: emailController.text,
-                                                password:
-                                                    passwordController.text);
-                                      } else {
-                                        toastMSG(
-                                            text:
-                                                "The password length must be at least 6 characters",
-                                            color: Colors.red);
-                                      }
+                          builder: (context) => defaultButton(context ,
+                              label: "Add",
+                              fontSize: 20,
+                              function: () {
+                                if (formKey.currentState!.validate()) {
+                                  if (passwordController.text.length > 5) {
+                                    if (kDebugMode) {
+                                      print(state.toString());
                                     }
-                                  })),
+                                    AUTHCubit.get(context)
+                                        .createAnAccountCubitFunction(
+                                            name: nameController.text,
+                                            phone: phoneController.text,
+                                            email: emailController.text,
+                                            password:
+                                                passwordController.text);
+                                  } else {
+                                    toastMSG(
+                                        text:
+                                            "The password length must be at least 6 characters",
+                                        color: Colors.red);
+                                  }
+                                }
+                              }),
                           fallback: (context) =>
                               const Center(child: CircularProgressIndicator()))
                     ],

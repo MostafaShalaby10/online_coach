@@ -53,32 +53,29 @@ class AddExercise extends StatelessWidget {
                   verticalSpace(space: 10),
                   ConditionalBuilder(
                       condition: state is! LoadingAddExerciseState,
-                      builder: (context) => Center(
-                          child: SizedBox(
-                              width: MediaQuery.of(context).size.width,
-                              child: defaultButton(
-                                  label: "Save",
-                                  fontSize: 20,
-                                  function: () {
-                                    if (formKey.currentState!.validate()) {
-                                      ExerciseCubit.get(context)
-                                          .addExerciseCubit(
-                                              userId: uid,
-                                              day: day,
-                                              data:
-                                            [
-                                            {
-                                              "link":
-                                                  exerciseLinkController.text,
-                                              "times":
-                                                  exerciseTimesController.text,
-                                              "label":
-                                                  exerciseLabelController.text
-                                            }
-                                          ]
-                                          );
+                      builder: (context) => defaultButton(context,
+                          label: "Save",
+                          fontSize: 20,
+                          function: () {
+                            if (formKey.currentState!.validate()) {
+                              ExerciseCubit.get(context)
+                                  .addExerciseCubit(
+                                      userId: uid,
+                                      day: day,
+                                      data:
+                                    [
+                                    {
+                                      "link":
+                                          exerciseLinkController.text,
+                                      "times":
+                                          exerciseTimesController.text,
+                                      "label":
+                                          exerciseLabelController.text
                                     }
-                                  }))),
+                                  ]
+                                  );
+                            }
+                          }),
                       fallback: (context) =>
                           const Center(child: CircularProgressIndicator())),
                 ],

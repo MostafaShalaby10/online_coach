@@ -1,7 +1,5 @@
-import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta/meta.dart';
 
 part 'supplements_state.dart';
 
@@ -11,7 +9,7 @@ class SupplementsCubit extends Cubit<SupplementsState> {
   static SupplementsCubit get(context) => BlocProvider.of(context);
   List<dynamic> supplementsData = [];
 
-  Map<String, dynamic> supplementsDataSingle = {};
+  Map<String, dynamic> ?supplementsDataSingle = {};
   void addSupplementsCubit({required String userId,
     required List data}) {
     emit(LoadingAddSupplementsState());
@@ -33,6 +31,7 @@ class SupplementsCubit extends Cubit<SupplementsState> {
   Future getSupplementsCubit({
     required String userId,
   }) {
+    supplementsData = [];
     emit(LoadingGetSupplementsState());
     return FirebaseFirestore.instance
         .collection("Users")
@@ -42,11 +41,11 @@ class SupplementsCubit extends Cubit<SupplementsState> {
         .get()
         .then((value) {
       supplementsDataSingle = value.data()!;
-      supplementsData.addAll({supplementsDataSingle["data"]});
+      supplementsData.addAll({supplementsDataSingle!["data"]});
       emit(SuccessfullyGetSupplementsState());
     }).catchError((error) {
       supplementsData = [];
-      emit(ErrorGetSupplementsState(error));
+      emit(ErrorGetSupplementsState(error.toString()));
     });
   }
 }

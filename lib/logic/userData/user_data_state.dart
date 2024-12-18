@@ -10,3 +10,23 @@ final class ErrorGetUserDataState extends UserDataState {
   final String error ;
   ErrorGetUserDataState(this.error);
 }
+
+final class LoadingGetSpecificUserDataState extends UserDataState {}
+final class SuccessfullyGetSpecificUserDataState extends UserDataState {}
+final class ErrorGetSpecificUserDataState extends UserDataState {
+  final String error ;
+  ErrorGetSpecificUserDataState(this.error);
+}
+final class LoadingDeleteCurrentAccountState extends UserDataState {}
+final class SuccessfullyDeleteCurrentAccountState extends UserDataState {}
+final class ErrorDeleteCurrentAccountState extends UserDataState {
+  final String error ;
+  ErrorDeleteCurrentAccountState(this.error);
+}
+
+final class LoadingUpdatePasswordState extends UserDataState {}
+final class SuccessfullyUpdatePasswordState extends UserDataState {}
+final class ErrorUpdatePasswordState extends UserDataState {
+  final String error ;
+  ErrorUpdatePasswordState(this.error);
+}

@@ -1,7 +1,5 @@
-import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta/meta.dart';
 
 part 'food_state.dart';
 
@@ -15,13 +13,14 @@ class FoodCubit extends Cubit<FoodState> {
     required String mealType,
     required List data}) {
     emit(LoadingAddFoodState());
-    foodData.addAll({mealType: data});
+    // foodData[mealType].add(data)??foodData.addAll({mealType:data});
+    foodData[mealType]==null?foodData.addAll({mealType:data}):foodData[mealType].add(data[0]);
     FirebaseFirestore.instance
         .collection("Users")
         .doc(userId) /*User id*/
         .collection("Food")
         .doc("Day $day") /* Which Day*/
-        .set({mealType : data})
+        .set(foodData)
         .then((value) {
       emit(SuccessfullyAddFoodState());
     }).catchError((error) {
@@ -43,7 +42,6 @@ class FoodCubit extends Cubit<FoodState> {
         .get()
         .then((value) {
       foodData = value.data()!;
-      print(foodData);
       // exerciseData.addAll({exerciseDataSingle["data"]});
       emit(SuccessfullyGetFoodState());
     }).catchError((error) {

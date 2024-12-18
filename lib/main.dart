@@ -6,10 +6,10 @@ import 'package:online_coach/presentation/admin/admin_home_page.dart';
 import 'package:online_coach/presentation/authentication/login.dart';
 import 'package:online_coach/presentation/user/user_home_page.dart';
 import 'package:online_coach/shared/shared_preferences/shared_preferences.dart';
-
+import 'firebase_options.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await SharedPrefs.init();
   if(SharedPrefs.getData(key: "type")=="admin")
     {
@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
         debugShowCheckedModeBanner: false,
-        home: const Login(),
+        home: start,
       ),
     );
   }

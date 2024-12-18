@@ -109,31 +109,28 @@ class _GymHistoryState extends State<GymHistory> {
                         verticalSpace(space: 20),
                         ConditionalBuilder(
                             condition: state is! LoadingAddPersonalDataState,
-                            builder: (context) => Center(
-                                child: SizedBox(
-                                    width: MediaQuery.of(context).size.width,
-                                    child: defaultButton(
-                                        label: "Finish",
-                                        fontSize: 20,
-                                        function: () {
-                                          if (formKey.currentState!
-                                              .validate()) {
-                                            personalData.addAll({
-                                              "goal": goalController.text,
-                                              "days": dailyController.text,
-                                              "weeks": weeklyController.text,
-                                              "gymHistory": _gymHistory,
-                                              "period": periodController.text,
-                                              "id": SharedPrefs.getData(
-                                                  key: "UID")
-                                            });
-                                            PersonalDataCubit.get(context)
-                                                .addPersonalDataCubit(
-                                                    userId: SharedPrefs.getData(
-                                                        key: "UID"),
-                                                    data: personalData);
-                                          }
-                                        }))),
+                            builder: (context) => defaultButton(context,
+                                label: "Finish",
+                                fontSize: 20,
+                                function: () {
+                                  if (formKey.currentState!
+                                      .validate()) {
+                                    personalData.addAll({
+                                      "goal": goalController.text,
+                                      "days": dailyController.text,
+                                      "weeks": weeklyController.text,
+                                      "gymHistory": _gymHistory,
+                                      "period": periodController.text,
+                                      "id": SharedPrefs.getData(
+                                          key: "UID")
+                                    });
+                                    PersonalDataCubit.get(context)
+                                        .addPersonalDataCubit(
+                                            userId: SharedPrefs.getData(
+                                                key: "UID"),
+                                            data: personalData);
+                                  }
+                                }),
                             fallback: (context) => const Center(
                                 child: CircularProgressIndicator()))
                       ],

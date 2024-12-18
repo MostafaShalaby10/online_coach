@@ -75,17 +75,14 @@ class ShowSupplements extends StatelessWidget {
                                 .isEmpty)
                               text(text: "There is no supplements"),
                             if (isAdmin)
-                              Center(
-                                  child: SizedBox(
-                                      width: MediaQuery.of(context).size.width,
-                                      child: defaultButton(
-                                          label: "Add supplements",
-                                          fontSize: 20,
-                                          function: () {
-                                            moveForward(
-                                                context: context,
-                                                page: AddSupplements(uid: uid));
-                                          })))
+                              defaultButton(context,
+                                  label: "Add supplements",
+                                  fontSize: 20,
+                                  function: () {
+                                    moveForward(
+                                        context: context,
+                                        page: AddSupplements(uid: uid));
+                                  })
                           ],
                         ),
                     fallback: (context) =>

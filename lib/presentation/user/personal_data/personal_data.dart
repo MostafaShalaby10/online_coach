@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:online_coach/presentation/user/personaldata/gym_history.dart';
+import 'package:online_coach/presentation/user/personal_data/gym_history.dart';
 import 'package:online_coach/shared/components/components.dart';
 import 'package:online_coach/shared/constants/constants.dart';
 
@@ -99,24 +99,21 @@ class _PersonalDataState extends State<PersonalData> {
                             ],
                           ),
                           verticalSpace(space: 40),
-                          Center(
-                              child: SizedBox(
-                                  width: MediaQuery.of(context).size.width,
-                                  child: defaultButton(
-                                      label: "Next",
-                                      fontSize: 20,
-                                      function: () {
-                                        if (formKey.currentState!.validate()) {
-                                          personalData.addAll({
-                                            "weight" : weightController.text ,
-                                            "tall" : tallController.text ,
-                                            "age" : ageController.text ,
-                                            "gender" : _selectedGender ,
-                                          });
+                          defaultButton(context,
+                              label: "Next",
+                              fontSize: 20,
+                              function: () {
+                                if (formKey.currentState!.validate()) {
+                                  personalData.addAll({
+                                    "weight" : weightController.text ,
+                                    "tall" : tallController.text ,
+                                    "age" : ageController.text ,
+                                    "gender" : _selectedGender ,
+                                  });
 
-                                          moveForward(context: context, page:const GymHistory());
-                                        }
-                                      }))),
+                                  moveForward(context: context, page:const GymHistory());
+                                }
+                              }),
                         ],
                       ),
                     )

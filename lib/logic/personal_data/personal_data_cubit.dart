@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta/meta.dart';
 import 'package:online_coach/model/user_personal_data_model.dart';
 
 part 'personal_data_state.dart';

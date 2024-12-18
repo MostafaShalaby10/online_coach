@@ -22,7 +22,6 @@ class AllUsers extends StatelessWidget {
                     builder: (context) => ListView.separated(
                         itemBuilder: (context, index) => InkWell(
                               onTap: () {
-
                                 moveForward(
                                     context: context,
                                     page: ShowPersonalData(
