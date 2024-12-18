@@ -15,4 +15,7 @@ App for online coach
 ### User roles => 
 - User can enter his personal data and his gym history when he use the app for first time
 - User can see exercises and meals for each day
+- User can delete his account anytime he wants
+- User can update his password
+- User can reset his password 
   
