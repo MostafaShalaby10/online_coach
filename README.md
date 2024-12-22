@@ -17,5 +17,7 @@ App for online coach
 - User can see exercises and meals for each day
 - User can delete his account anytime he wants
 - User can update his password
-- User can reset his password 
+- User can reset his password
+- User can update his data
+
   
