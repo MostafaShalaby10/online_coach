@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "408012370792",
+    "project_id": "onlinecoach-3f114",
+    "storage_bucket": "onlinecoach-3f114.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:408012370792:android:8066160fd79f4572b91cdd",
+        "android_client_info": {
+          "package_name": "com.example.online_coach"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAANEfG_DEorRAGsv4WW0jTbdJJBXDgxNM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
