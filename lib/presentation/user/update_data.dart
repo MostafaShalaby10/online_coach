@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:online_coach/logic/userData/user_data_cubit.dart';
-import 'package:online_coach/presentation/user/user_home_page.dart';
+import 'package:online_coach/presentation/shared/home_page.dart';
 import 'package:online_coach/shared/components/components.dart';
 
 import '../../shared/shared_preferences/shared_preferences.dart';

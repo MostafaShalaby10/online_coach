@@ -4,21 +4,20 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:online_coach/presentation/admin/admin_home_page.dart';
 import 'package:online_coach/presentation/authentication/login.dart';
-import 'package:online_coach/presentation/user/user_home_page.dart';
+import 'package:online_coach/presentation/shared/home_page.dart';
 import 'package:online_coach/shared/shared_preferences/shared_preferences.dart';
 import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setEnabledSystemUIMode(
-      SystemUiMode.manual, overlays: [SystemUiOverlay.bottom]);
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+      overlays: [SystemUiOverlay.bottom]);
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await SharedPrefs.init();
   if (SharedPrefs.getData(key: "type") == "admin") {
     runApp(const MyApp(
-      start: AdminHomePage(),
+      start: Homepage(),
     ));
   } else if (SharedPrefs.getData(key: "type") == "user") {
     runApp(const MyApp(
@@ -46,11 +45,8 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       child: MaterialApp(
         theme: ThemeData(
-
-          appBarTheme:  AppBarTheme(
-            iconTheme: const IconThemeData(
-              color: Colors.white
-            ),
+          appBarTheme: AppBarTheme(
+            iconTheme: const IconThemeData(color: Colors.white),
             backgroundColor: Colors.black,
             centerTitle: true,
             elevation: 0,
@@ -61,11 +57,12 @@ class MyApp extends StatelessWidget {
           primaryColor: Colors.white,
           // font family for the app
           textTheme: GoogleFonts.latoTextTheme(textTheme).copyWith(
-            bodyMedium: GoogleFonts.alkalami(textStyle: textTheme.bodyMedium , color: Colors.white) ,
+            bodyMedium: GoogleFonts.alkalami(
+                textStyle: textTheme.bodyMedium, color: Colors.white),
           ),
         ),
         debugShowCheckedModeBanner: false,
-        home: Login(),
+        home: start,
       ),
     );
   }

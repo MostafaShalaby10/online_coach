@@ -38,3 +38,18 @@ final class ErrorUpdateDataState extends UserDataState {
   final String error ;
   ErrorUpdateDataState(this.error);
 }
+
+
+final class LoadingAddPersonalDataState extends UserDataState {}
+final class SuccessfullyAddPersonalDataState extends UserDataState {}
+final class ErrorAddPersonalDataState extends UserDataState {
+  final String error ;
+  ErrorAddPersonalDataState(this.error);
+}
+
+final class LoadingGetPersonalDataState extends UserDataState {}
+final class SuccessfullyGetPersonalDataState extends UserDataState {}
+final class ErrorGetPersonalDataState extends UserDataState {
+  final String error ;
+  ErrorGetPersonalDataState(this.error);
+}

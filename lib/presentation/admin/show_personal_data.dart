@@ -1,10 +1,11 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:online_coach/logic/personal_data/personal_data_cubit.dart';
 import 'package:online_coach/presentation/shared/days.dart';
 import 'package:online_coach/presentation/shared/show_supplements.dart';
 import 'package:online_coach/shared/components/components.dart';
+
+import '../../logic/userData/user_data_cubit.dart';
 
 class ShowPersonalData extends StatelessWidget {
   final String userId;
@@ -15,8 +16,8 @@ class ShowPersonalData extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-          PersonalDataCubit()..getPersonalDataCubit(userId: userId),
-      child: BlocConsumer<PersonalDataCubit, PersonalDataState>(
+          UserDataCubit()..getPersonalDataCubit(userId: userId),
+      child: BlocConsumer<UserDataCubit, UserDataState>(
           builder: (context, state) {
             return Scaffold(
               appBar: AppBar(),
@@ -28,7 +29,7 @@ class ShowPersonalData extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              PersonalDataCubit.get(context)
+                              UserDataCubit.get(context)
                                       .userPersonalData!
                                       .isNotEmpty
                                   ? Column(
@@ -37,31 +38,139 @@ class ShowPersonalData extends StatelessWidget {
                                       children: [
                                         text(
                                             text:
-                                                "Weight : ${PersonalDataCubit.get(context).userPersonalData!["weight"]}"),
+                                                "Weight"),
+                                        Container(
+                                          width: MediaQuery.of(context).size.width,
+                                          decoration: BoxDecoration(
+                                              color: Colors.grey[300],
+                                              borderRadius: BorderRadius.circular(15)
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 5.0 , horizontal: 20),
+                                            child: text(fontColor: Colors.black,text: UserDataCubit.get(context).userPersonalData!["weight"] , textAlign: TextAlign.start),
+                                          ),
+                                        ) ,
+                                        verticalSpace(space: 10),
                                         text(
                                             text:
-                                                "Tall : ${PersonalDataCubit.get(context).userPersonalData!["tall"]}"),
+                                                "Tall"),
+                                        Container(
+                                          width: MediaQuery.of(context).size.width,
+                                          decoration: BoxDecoration(
+                                              color: Colors.grey[300],
+                                              borderRadius: BorderRadius.circular(15)
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 5.0 , horizontal: 20),
+                                            child: text(fontColor: Colors.black,text: UserDataCubit.get(context).userPersonalData!["tall"] , textAlign: TextAlign.start),
+                                          ),
+                                        ) ,
+                                        verticalSpace(space: 10),
                                         text(
                                             text:
-                                                "Goal : ${PersonalDataCubit.get(context).userPersonalData!["goal"]}"),
+                                                "Goal"),
+                                        Container(
+                                          width: MediaQuery.of(context).size.width,
+                                          decoration: BoxDecoration(
+                                              color: Colors.grey[300],
+                                              borderRadius: BorderRadius.circular(15)
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 5.0 , horizontal: 20),
+                                            child: text(fontColor: Colors.black,text: UserDataCubit.get(context).userPersonalData!["goal"] , textAlign: TextAlign.start),
+                                          ),
+                                        ) ,
+                                        verticalSpace(space: 10),
                                         text(
                                             text:
-                                                "Gender : ${PersonalDataCubit.get(context).userPersonalData!["gender"]}"),
+                                                "Gender"),
+                                        Container(
+                                          width: MediaQuery.of(context).size.width,
+                                          decoration: BoxDecoration(
+                                              color: Colors.grey[300],
+                                              borderRadius: BorderRadius.circular(15)
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 5.0 , horizontal: 20),
+                                            child: text(fontColor: Colors.black,text: UserDataCubit.get(context).userPersonalData!["gender"] , textAlign: TextAlign.start),
+                                          ),
+                                        ) ,
+                                        verticalSpace(space: 10),
                                         text(
                                             text:
-                                                "Gym History : ${PersonalDataCubit.get(context).userPersonalData!["gymHistory"]}"),
+                                                "Gym History"),
+                                        Container(
+                                          width: MediaQuery.of(context).size.width,
+                                          decoration: BoxDecoration(
+                                              color: Colors.grey[300],
+                                              borderRadius: BorderRadius.circular(15)
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 5.0 , horizontal: 20),
+                                            child: text(fontColor: Colors.black , text: UserDataCubit.get(context).userPersonalData!["gymHistory"] , textAlign: TextAlign.start),
+                                          ),
+                                        ) ,
+                                        verticalSpace(space: 10),
                                         text(
                                             text:
-                                                "Age : ${PersonalDataCubit.get(context).userPersonalData!["age"]}"),
+                                                "Age"),
+                                        Container(
+                                          width: MediaQuery.of(context).size.width,
+                                          decoration: BoxDecoration(
+                                              color: Colors.grey[300],
+                                              borderRadius: BorderRadius.circular(15)
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 5.0 , horizontal: 20),
+                                            child: text(fontColor: Colors.black,text: UserDataCubit.get(context).userPersonalData!["age"] , textAlign: TextAlign.start),
+                                          ),
+                                        ) ,
+                                        verticalSpace(space: 10),
                                         text(
                                             text:
-                                                "Period : ${PersonalDataCubit.get(context).userPersonalData!["period"]}"),
+                                                "Period"),
+                                        Container(
+                                          width: MediaQuery.of(context).size.width,
+                                          decoration: BoxDecoration(
+                                              color: Colors.grey[300],
+                                              borderRadius: BorderRadius.circular(15)
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 5.0 , horizontal: 20),
+                                            child: text(fontColor: Colors.black , text: UserDataCubit.get(context).userPersonalData!["period"]==""?"No History":UserDataCubit.get(context).userPersonalData!["period"] , textAlign: TextAlign.start),
+                                          ),
+                                        ) ,
+                                        verticalSpace(space: 10),
                                         text(
                                             text:
-                                                "Times per week: ${PersonalDataCubit.get(context).userPersonalData!["weeks"]}"),
+                                                "Times per week"),
+                                        Container(
+                                          width: MediaQuery.of(context).size.width,
+                                          decoration: BoxDecoration(
+                                              color: Colors.grey[300],
+                                              borderRadius: BorderRadius.circular(15)
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 5.0 , horizontal: 20),
+                                            child: text(fontColor: Colors.black , text: UserDataCubit.get(context).userPersonalData!["weeks"] , textAlign: TextAlign.start),
+                                          ),
+                                        ) ,
+                                        verticalSpace(space: 10),
                                         text(
                                             text:
-                                                "Times per day : ${PersonalDataCubit.get(context).userPersonalData!["days"]}"),
+                                                "Times per day"),
+                                        Container(
+                                          width: MediaQuery.of(context).size.width,
+                                          decoration: BoxDecoration(
+                                              color: Colors.grey[300],
+                                              borderRadius: BorderRadius.circular(15)
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 5.0 , horizontal: 20),
+                                            child: text(fontColor: Colors.black ,text: UserDataCubit.get(context).userPersonalData!["days"] , textAlign: TextAlign.start),
+                                          ),
+                                        ) ,
+                                        verticalSpace(space: 10),
                                       ],
                                     )
                                   : text(
@@ -70,7 +179,7 @@ class ShowPersonalData extends StatelessWidget {
                                       fontWeight: FontWeight.w900,
                                       fontSize: 20,
                                     ),
-                              verticalSpace(space: 100),
+                              verticalSpace(space: 30),
                               defaultButton(context ,
                                   label: "Exercise",
                                   fontSize: 20,

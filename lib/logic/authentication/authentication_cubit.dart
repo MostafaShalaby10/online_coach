@@ -31,12 +31,13 @@ class AUTHCubit extends Cubit<AUTHState> {
       {required String email,
       required String password,
       required String phone,
+      required String role,
       required String name}) {
     emit(LoadingCreateAccountState());
     FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email, password: password)
         .then((value) {
-      userDataModel = UserDataModel(
+      userDataModel = UserDataModel(role: role,
           phone: phone, email: email, name: name, id: value.user!.uid);
       FirebaseFirestore.instance
           .collection("Users")

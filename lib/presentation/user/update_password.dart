@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_coach/logic/userData/user_data_cubit.dart';
-import 'package:online_coach/presentation/user/user_home_page.dart';
+import 'package:online_coach/presentation/authentication/login.dart';
+import 'package:online_coach/presentation/shared/home_page.dart';
 import 'package:online_coach/shared/components/components.dart';
 
 class UpdatePassword extends StatefulWidget {
@@ -65,6 +66,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
                     verticalSpace(space: 25),
                     state is! LoadingUpdatePasswordState
                         ? defaultButton(context, label: "Confirm", fontSize: 20,
+                            color: Colors.green[700],
                             function: () {
                             if (formKey.currentState!.validate()) {
                               if (passwordController.text ==
@@ -73,7 +75,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
                                     password: passwordController.text);
                               } else {
                                 toastMSG(
-                                    text: "Passwords are't match",
+                                    text: "Passwords aren't match",
                                     color: Colors.red);
                               }
                             }
@@ -87,7 +89,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
         );
       }, listener: (context, state) {
         if (state is SuccessfullyUpdatePasswordState) {
-          moveForwardAndRemove(context: context, page: const Homepage());
+          moveForwardAndRemove(context: context, page: const Login());
           toastMSG(text: "Password changed successfully", color: Colors.green);
           passwordController.clear();
           confPasswordController.clear();

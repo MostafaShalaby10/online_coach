@@ -6,6 +6,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:online_coach/logic/authentication/authentication_cubit.dart';
 import 'package:online_coach/shared/components/components.dart';
 
+import '../../shared/constants/constants.dart';
+
 class Adduser extends StatefulWidget {
   const Adduser({super.key});
 
@@ -13,6 +15,7 @@ class Adduser extends StatefulWidget {
   State<Adduser> createState() => _AdduserState();
 }
 
+String _selecterRole = "user";
 bool isPass = true;
 TextEditingController emailController = TextEditingController();
 TextEditingController passwordController = TextEditingController();
@@ -82,6 +85,45 @@ class _AdduserState extends State<Adduser> {
                           label: "Phone",
                           prefixIcon: Icons.phone_android_outlined),
                       verticalSpace(space: 20),
+                      Row(
+                        children: [
+                          text(text: "Gender"),
+                          Expanded(
+                            child: ListTile(
+                              leading: Radio<String>(
+                                value: 'user',
+                                groupValue: _selecterRole,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _selecterRole = value!;
+                                  });
+                                },
+                                activeColor: secondaryColor,
+                              ),
+                              horizontalTitleGap: 0,
+                              title: const Text('User'  , style: TextStyle(color: Colors.white),),
+                            ),
+                          ),
+                          Expanded(
+                            child: ListTile(
+                              leading: Radio<String>(
+                                value: 'admin',
+                                groupValue: _selecterRole,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _selecterRole = value!;
+                                  });
+                                },
+                                activeColor: secondaryColor,
+                              ),
+                              horizontalTitleGap: 0,
+                              title: const Text('Admin',style: TextStyle(color: Colors.white)),
+                            ),
+                          ),
+                        ],
+                      ),
+
+                      verticalSpace(space: 20),
                       ConditionalBuilder(
                           condition: state is! LoadingCreateAccountState,
                           builder: (context) => defaultButton(context ,
@@ -99,7 +141,7 @@ class _AdduserState extends State<Adduser> {
                                             phone: phoneController.text,
                                             email: emailController.text,
                                             password:
-                                                passwordController.text);
+                                                passwordController.text, role: _selecterRole);
                                   } else {
                                     toastMSG(
                                         text:
