@@ -29,45 +29,47 @@ class AddSupplements extends StatelessWidget {
             padding: const EdgeInsets.all(15.0),
             child: Form(
               key: formKey,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  textField(
-                      type: TextInputType.text,
-                      label: "Add supplements",
-                      prefixIcon: FontAwesomeIcons.supple,
-                      controller: supplementsController),
-                  verticalSpace(space: 10),
-                  textField(
-                      type: TextInputType.text,
-                      label: "Add the quantity",
-                      prefixIcon: Icons.numbers_outlined,
-                      controller: supplementsQuantityController),
-                  verticalSpace(space: 10),
-                  ConditionalBuilder(
-                      condition: state is! LoadingAddSupplementsState,
-                      builder: (context) => defaultButton(context ,
-                          label: "Save",
-                          fontSize: 20,
-                          function: () {
-                            if (formKey.currentState!.validate()) {
-                              SupplementsCubit.get(context)
-                                  .addSupplementsCubit(
-                                      userId: uid,
-                                      data: [
-                                    {
-                                      "supplementsName":
-                                          supplementsController.text,
-                                      "quantity":
-                                          supplementsQuantityController
-                                              .text
-                                    }
-                                  ]);
-                            }
-                          }),
-                      fallback: (context) =>
-                          const Center(child: CircularProgressIndicator()))
-                ],
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    textField(
+                        type: TextInputType.text,
+                        label: "Add supplements",
+                        prefixIcon: FontAwesomeIcons.supple,
+                        controller: supplementsController),
+                    verticalSpace(space: 10),
+                    textField(
+                        type: TextInputType.text,
+                        label: "Add the quantity",
+                        prefixIcon: Icons.numbers_outlined,
+                        controller: supplementsQuantityController),
+                    verticalSpace(space: 10),
+                    ConditionalBuilder(
+                        condition: state is! LoadingAddSupplementsState,
+                        builder: (context) => defaultButton(context ,
+                            label: "Save",
+                            fontSize: 20,
+                            function: () {
+                              if (formKey.currentState!.validate()) {
+                                SupplementsCubit.get(context)
+                                    .addSupplementsCubit(
+                                        userId: uid,
+                                        data: [
+                                      {
+                                        "supplementsName":
+                                            supplementsController.text,
+                                        "quantity":
+                                            supplementsQuantityController
+                                                .text
+                                      }
+                                    ]);
+                              }
+                            }),
+                        fallback: (context) =>
+                            const Center(child: CircularProgressIndicator()))
+                  ],
+                ),
               ),
             ),
           ),
@@ -75,6 +77,8 @@ class AddSupplements extends StatelessWidget {
       }, listener: (context, state) {
         if (state is SuccessfullyAddSupplementsState) {
           toastMSG(text: "Added supplements successfully", color: Colors.green);
+          supplementsQuantityController.clear();
+          supplementsController.clear();
         } else if (state is ErrorAddSupplementsState) {
           toastMSG(text: state.error.toString(), color: Colors.red);
         }

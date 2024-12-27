@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:online_coach/presentation/shared/show_exercise.dart';
 import 'package:online_coach/presentation/shared/show_food.dart';
 import 'package:online_coach/shared/components/components.dart';
@@ -38,7 +37,6 @@ class Days extends StatelessWidget {
     "https://img.freepik.com/free-photo/plate-with-paleo-diet-food-boiled-eggs-avocado-cucumber-nuts-cherry-strawberries-paleo-breakfast-top-view_2829-17444.jpg?t=st=1735253268~exp=1735256868~hmac=a4c3c90bb60e4447d32bde71b95d9b79bde190e8506a020015a4d631d1d9afe3&w=1060" ,
     "https://img.freepik.com/free-photo/view-healthy-food-incased-pill-shaped-container_23-2151344842.jpg?t=st=1735253396~exp=1735256996~hmac=d279114415156fbd2d2197d165d1a6395bfd8058a823ac0302106ba1468dedf6&w=1060"];
     return Scaffold(
-      backgroundColor:Colors.grey[900],
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
@@ -70,7 +68,7 @@ class Days extends StatelessWidget {
                         ));
             },
             child: SizedBox(
-              height: 140.h,
+              height: 170.h,
               child: Stack(
                 alignment: Alignment.centerLeft,
                 children: [
@@ -79,8 +77,8 @@ class Days extends StatelessWidget {
                       width: MediaQuery.of(context).size.width,
                       image: NetworkImage(isExercise?exerciseImages[index]:foodImages[index])),
                   Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 15.0, horizontal: 20),
+                    padding:  EdgeInsets.symmetric(
+                        vertical: 10.h, horizontal: 20.w),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

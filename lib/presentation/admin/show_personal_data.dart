@@ -128,7 +128,7 @@ class ShowPersonalData extends StatelessWidget {
                                         verticalSpace(space: 10),
                                         text(
                                             text:
-                                                "Period"),
+                                                "History of gym"),
                                         Container(
                                           width: MediaQuery.of(context).size.width,
                                           decoration: BoxDecoration(

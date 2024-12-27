@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_coach/logic/userData/user_data_cubit.dart';
 import 'package:online_coach/presentation/authentication/login.dart';
-import 'package:online_coach/presentation/shared/home_page.dart';
 import 'package:online_coach/shared/components/components.dart';
 
 class UpdatePassword extends StatefulWidget {
@@ -70,12 +69,12 @@ class _UpdatePasswordState extends State<UpdatePassword> {
                             color: Colors.green[700],
                             function: () {
                             if (formKey.currentState!.validate()) {
-                              if (passwordController.text ==
+                              if (passwordController.text.length > 5&&passwordController.text ==
                                   confPasswordController.text) {
                                 UserDataCubit.get(context).updatePassword(
                                     password: passwordController.text);
                               } else {
-                                toastMSG(
+                                passwordController.text.length < 5 ? toastMSG(text: "The password is less than 6 characters", color: Colors.red):toastMSG(
                                     text: "Passwords aren't match",
                                     color: Colors.red);
                               }

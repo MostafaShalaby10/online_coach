@@ -6,7 +6,6 @@ import 'package:online_coach/logic/authentication/authentication_cubit.dart';
 import 'package:online_coach/presentation/authentication/reset_password.dart';
 import 'package:online_coach/presentation/shared/home_page.dart';
 import 'package:online_coach/shared/components/components.dart';
-import 'package:online_coach/shared/shared_preferences/shared_preferences.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -129,7 +128,7 @@ class _LoginState extends State<Login> {
           emailController.clear();
           passwordController.clear();
         } else if (state is ErrorLoginState) {
-          toastMSG(text: state.error.toString(), color: HexColor("#B0B0B0"));
+          toastMSG(text: state.error.toString(), color: Colors.red);
         }
       }),
     );

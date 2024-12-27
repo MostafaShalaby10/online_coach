@@ -32,54 +32,56 @@ class AddExercise extends StatelessWidget {
             padding: const EdgeInsets.all(15.0),
             child: Form(
               key: formKey,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  textField(
-                      type: TextInputType.text,
-                      label: "Add exercise label",
-                      prefixIcon: Icons.sports_gymnastics_outlined,
-                      controller: exerciseLabelController),
-                  verticalSpace(space: 10),
-                  textField(
-                      type: TextInputType.number,
-                      label: "Add the Sets",
-                      prefixIcon: Icons.numbers_outlined,
-                      controller: exerciseSetController),
-                  verticalSpace(space: 10),
-                  textField(
-                      type: TextInputType.number,
-                      label: "Add the REPS",
-                      prefixIcon: Icons.numbers_outlined,
-                      controller: exerciseRepsController),
-                  verticalSpace(space: 10),
-                  textField(
-                      type: TextInputType.text,
-                      label: "Add exercise link",
-                      prefixIcon: FontAwesomeIcons.link,
-                      controller: exerciseLinkController),
-                  verticalSpace(space: 10),
-                  ConditionalBuilder(
-                      condition: state is! LoadingAddExerciseState,
-                      builder: (context) => defaultButton(context,
-                              label: "Save", fontSize: 20, function: () {
-                            if (formKey.currentState!.validate()) {
-                              ExerciseCubit.get(context).addExerciseCubit(
-                                  userId: uid,
-                                  day: day,
-                                  data: [
-                                    {
-                                      "link": exerciseLinkController.text,
-                                      "Set": exerciseSetController.text,
-                                      "reps": exerciseRepsController.text,
-                                      "label": exerciseLabelController.text
-                                    }
-                                  ]);
-                            }
-                          }),
-                      fallback: (context) =>
-                          const Center(child: CircularProgressIndicator())),
-                ],
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    textField(
+                        type: TextInputType.text,
+                        label: "Add exercise label",
+                        prefixIcon: Icons.sports_gymnastics_outlined,
+                        controller: exerciseLabelController),
+                    verticalSpace(space: 10),
+                    textField(
+                        type: TextInputType.number,
+                        label: "Add the Sets",
+                        prefixIcon: Icons.numbers_outlined,
+                        controller: exerciseSetController),
+                    verticalSpace(space: 10),
+                    textField(
+                        type: TextInputType.number,
+                        label: "Add the REPS",
+                        prefixIcon: Icons.numbers_outlined,
+                        controller: exerciseRepsController),
+                    verticalSpace(space: 10),
+                    textField(
+                        type: TextInputType.text,
+                        label: "Add exercise link",
+                        prefixIcon: FontAwesomeIcons.link,
+                        controller: exerciseLinkController),
+                    verticalSpace(space: 10),
+                    ConditionalBuilder(
+                        condition: state is! LoadingAddExerciseState,
+                        builder: (context) => defaultButton(context,
+                                label: "Save", fontSize: 20, function: () {
+                              if (formKey.currentState!.validate()) {
+                                ExerciseCubit.get(context).addExerciseCubit(
+                                    userId: uid,
+                                    day: day,
+                                    data: [
+                                      {
+                                        "link": exerciseLinkController.text,
+                                        "Set": exerciseSetController.text,
+                                        "reps": exerciseRepsController.text,
+                                        "label": exerciseLabelController.text
+                                      }
+                                    ]);
+                              }
+                            }),
+                        fallback: (context) =>
+                            const Center(child: CircularProgressIndicator())),
+                  ],
+                ),
               ),
             ),
           ),

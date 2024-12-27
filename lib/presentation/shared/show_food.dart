@@ -1,4 +1,3 @@
-import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -280,7 +279,7 @@ class _ShowFoodState extends State<ShowFood> {
                                         ],
                                       ),
                                     ),
-                                  if (this.widget.isAdmin)
+                                  if (widget.isAdmin)
                                     defaultButton(context,
                                         label: "Add Food",
                                         color: Colors.grey[700],
@@ -288,8 +287,8 @@ class _ShowFoodState extends State<ShowFood> {
                                       moveForward(
                                           context: context,
                                           page: AddFood(
-                                            uID: this.widget.uid,
-                                            day: this.widget.day,
+                                            uID: widget.uid,
+                                            day: widget.day,
                                           ));
                                     }),
                                 ],

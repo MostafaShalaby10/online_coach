@@ -222,7 +222,7 @@ class Homepage extends StatelessWidget {
                       ),
                     );
             } else {
-              return CircularProgressIndicator();
+              return Center(child: CircularProgressIndicator());
             }
           },
           listener: (context, state) {}),

@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:online_coach/presentation/authentication/login.dart';
 import 'package:online_coach/presentation/shared/home_page.dart';
 import 'package:online_coach/shared/shared_preferences/shared_preferences.dart';
@@ -13,21 +12,25 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
       overlays: [SystemUiOverlay.bottom]);
+
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await SharedPrefs.init();
-  if (SharedPrefs.getData(key: "type") == "admin") {
-    runApp(const MyApp(
-      start: Homepage(),
-    ));
-  } else if (SharedPrefs.getData(key: "type") == "user") {
-    runApp(const MyApp(
-      start: Homepage(),
-    ));
-  } else {
-    runApp(const MyApp(
-      start: Login(),
-    ));
-  }
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,DeviceOrientation.portraitDown  ]).then((value) {
+    if (SharedPrefs.getData(key: "type") == "admin") {
+      runApp(MyApp(
+            start: Homepage(),
+          ));
+    } else if (SharedPrefs.getData(key: "type") == "user") {
+      runApp(MyApp(
+            start: Homepage(),
+          ));
+    } else {
+      runApp(MyApp(
+            start: Login(),
+          ));
+    }
+  });
 }
 
 class MyApp extends StatelessWidget {
@@ -44,17 +47,18 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       child: MaterialApp(
+
         theme: ThemeData(
           appBarTheme: AppBarTheme(
+            centerTitle: true,
             iconTheme: const IconThemeData(color: Colors.white),
             backgroundColor: Colors.grey[900],
-            centerTitle: true,
             elevation: 0,
-            surfaceTintColor: Colors.black,
           ),
           // background color for app
           scaffoldBackgroundColor: Colors.grey[900],
-          primaryColor: Colors.white,
+          progressIndicatorTheme:
+              ProgressIndicatorThemeData(color: Colors.white),
           // font family for the app
           textTheme: GoogleFonts.latoTextTheme(textTheme).copyWith(
             bodyMedium: GoogleFonts.alkalami(

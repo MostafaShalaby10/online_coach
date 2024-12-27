@@ -1,8 +1,6 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:online_coach/logic/authentication/authentication_cubit.dart';
 import 'package:online_coach/shared/components/components.dart';
 
@@ -31,15 +29,7 @@ class _AdduserState extends State<Adduser> {
       child: BlocConsumer<AUTHCubit, AUTHState>(builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            leading: IconButton(
-              onPressed: () {
-                moveBackWord(context: context);
-              },
-              icon:  const Icon(
-                FontAwesomeIcons.arrowLeft,
-                size: 30,
-              ),
-            ),
+
             title: text(text: "Add User"),
           ),
           body: SingleChildScrollView(
@@ -131,10 +121,7 @@ class _AdduserState extends State<Adduser> {
                               fontSize: 20,
                               function: () {
                                 if (formKey.currentState!.validate()) {
-                                  if (passwordController.text.length > 5) {
-                                    if (kDebugMode) {
-                                      print(state.toString());
-                                    }
+                                  if (passwordController.text.length > 5 && phoneController.text.length>10) {
                                     AUTHCubit.get(context)
                                         .createAnAccountCubitFunction(
                                             name: nameController.text,
@@ -143,10 +130,13 @@ class _AdduserState extends State<Adduser> {
                                             password:
                                                 passwordController.text, role: _selectRole);
                                   } else {
-                                    toastMSG(
+                                   passwordController.text.length<5? toastMSG(
                                         text:
                                             "The password length must be at least 6 characters",
-                                        color: Colors.red);
+                                        color: Colors.red): toastMSG(
+                                       text:
+                                       "Enter valid phone number",
+                                       color: Colors.red);
                                   }
                                 }
                               }),

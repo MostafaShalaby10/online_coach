@@ -96,7 +96,7 @@ class _PersonalDataState extends State<PersonalData> {
                                   activeColor: secondaryColor,
                                 ),
                                 horizontalTitleGap: 0,
-                                title: const Text('Female',style: TextStyle(color: Colors.white)),
+                                title: const Text('Female',style: TextStyle(color: Colors.white , fontSize: 17)) ,
                               ),
                             ),
                           ],

@@ -8,7 +8,6 @@ import 'package:online_coach/logic/userData/user_data_cubit.dart';
 import 'package:online_coach/presentation/shared/update_data.dart';
 import 'package:online_coach/presentation/shared/update_password.dart';
 import 'package:online_coach/shared/components/components.dart';
-import 'package:online_coach/shared/constants/constants.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import '../../shared/shared_preferences/shared_preferences.dart';
 import '../authentication/login.dart';
@@ -29,16 +28,14 @@ class Settings extends StatelessWidget {
           appBar: AppBar(
             actions: [
               TextButton(onPressed: (){
-        if (isAdmin) {
               SharedPrefs.removeData(key: "UID");
               SharedPrefs.removeData(key: "type");
               moveForwardAndRemove(
                   context: context, page: const Login());
-            } else {
               SharedPrefs.removeData(key: "UID");
               SharedPrefs.removeData(key: "type");
-              moveForward(context: context, page: Login());
-            }
+              moveForwardAndRemove(context: context, page: Login());
+            
               }, child: text(text: "Logout" , fontColor: Colors.red))
             ],
           ),
@@ -69,7 +66,7 @@ class Settings extends StatelessWidget {
                               child: IconButton(
                                   onPressed: () {
                                     launchUrlString(
-                                        "whatsapp://send?text=sample text&phone=01093080663",
+                                        "whatsapp://send?text=&phone=+201093080663",
                                         mode: LaunchMode.externalApplication);
                                   },
                                   icon: const Icon(FontAwesomeIcons.whatsapp , color: Colors.green,)),
@@ -155,7 +152,7 @@ class Settings extends StatelessWidget {
 
                       Spacer(),
                       if (!isAdmin)
-                        InkWell(
+                       state is! LoadingDeleteCurrentAccountState ? InkWell(
                           onTap: () async {
                             if (await confirm(
                               context,
@@ -168,8 +165,7 @@ class Settings extends StatelessWidget {
                             )) {
                               UserDataCubit.get(context).deleteCurrentUser(
                                   id: SharedPrefs.getData(key: "UID"));
-                              return moveForward(
-                                  context: context, page: const Login());
+
                             }
                           },
                           child: Padding(
@@ -195,7 +191,7 @@ class Settings extends StatelessWidget {
                               ),
                             ),
                           ),
-                        ),
+                        ):Center(child: CircularProgressIndicator()),
                     ],
                   ),
                 )
@@ -204,6 +200,8 @@ class Settings extends StatelessWidget {
       }, listener: (context, state) {
         if (state is SuccessfullyDeleteCurrentAccountState) {
           toastMSG(text: "Deleted account successfully", color: Colors.green);
+          SharedPrefs.removeData(key: "UID");
+          SharedPrefs.removeData(key: "type");
           moveForwardAndRemove(context: context, page: const Login());
         } else if (state is ErrorDeleteCurrentAccountState) {
           toastMSG(text: "Deleted account Failed", color: Colors.red);

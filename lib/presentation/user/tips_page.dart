@@ -11,20 +11,8 @@ class TipsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: IconButton(
-          onPressed: () {
-            moveBackWord(context: context);
-          },
-          icon: const Icon(
-            FontAwesomeIcons.arrowLeft,
-            color: Colors.black,
-            size: 20,
-          ),
-        ),
+
       ),
       body: SingleChildScrollView(
           child: Column(

@@ -75,6 +75,7 @@ class UserDataCubit extends Cubit<UserDataState> {
     FirebaseAuth.instance.currentUser!.updatePassword(password).then((value) {
       emit(SuccessfullyUpdatePasswordState());
     }).catchError((error) {
+      print(error.toString());
       emit(ErrorUpdatePasswordState(error));
     });
   }

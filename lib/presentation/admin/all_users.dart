@@ -1,12 +1,10 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:online_coach/logic/userData/user_data_cubit.dart';
 import 'package:online_coach/presentation/admin/show_personal_data.dart';
 import 'package:online_coach/shared/components/components.dart';
-import 'package:online_coach/shared/shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../shared/constants/constants.dart';
@@ -21,9 +19,7 @@ class AllUsers extends StatelessWidget {
       child: BlocConsumer<UserDataCubit, UserDataState>(
           builder: (context, state) {
             return Scaffold(
-              backgroundColor: Colors.black,
                 appBar: AppBar(
-                  backgroundColor: Colors.black,
                 ),
                 body: ConditionalBuilder(
                     condition: state is! LoadingGetUserDataState,
@@ -88,7 +84,7 @@ class AllUsers extends StatelessWidget {
                                             IconButton(
                                                 onPressed: () {
                                                   launchUrlString(
-                                                      "whatsapp://send?text=sample text&phone=${UserDataCubit.get(context).usersData[index].phone}");
+                                                      "whatsapp://send?text=&phone=+2${UserDataCubit.get(context).usersData[index].phone}");
                                                 },
                                                 icon: Icon(
                                                     FontAwesomeIcons.whatsapp)),

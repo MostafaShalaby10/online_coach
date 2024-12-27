@@ -1,8 +1,6 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:online_coach/logic/exercise/exercise_cubit.dart';
@@ -29,9 +27,7 @@ class ShowExercise extends StatelessWidget {
       child: BlocConsumer<ExerciseCubit, ExerciseState>(
           builder: (context, state) {
             return Scaffold(
-              backgroundColor: Colors.grey[900],
               appBar: AppBar(
-                backgroundColor: Colors.grey[900],
               ),
               body: ConditionalBuilder(
                   condition: state is! LoadingGetExerciseState,
