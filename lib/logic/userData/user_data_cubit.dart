@@ -24,8 +24,9 @@ class UserDataCubit extends Cubit<UserDataState> {
         .get()
         .then((value) {
       for (var element in value.docs) {
-        if (SharedPrefs.getData(key: "UID") != element.data()["id"])
+        if (element.data()["role"]=="user") {
           usersData.add(UserDataModel.fromJson(element.data()));
+        }
       }
       emit(SuccessfullyGetUserDataState());
     }).catchError((error) {

@@ -6,6 +6,8 @@ import 'package:online_coach/logic/food/food_cubit.dart';
 import 'package:online_coach/presentation/admin/add_food.dart';
 import 'package:online_coach/shared/components/components.dart';
 
+import '../../shared/constants/constants.dart';
+
 class ShowFood extends StatefulWidget {
   final String day;
   final bool isAdmin;
@@ -149,8 +151,24 @@ class _ShowFoodState extends State<ShowFood> {
                                           if (FoodCubit.get(context)
                                                   .foodData["breakfast"] ==
                                               null)
-                                            text(
-                                                text: "There is no breakfast "),
+                                            Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: [
+                                                Image(
+                                                    image: NetworkImage(
+                                                        "https://img.freepik.com/free-psd/lying-down-watching-movies-home-3d-illustration_1419-2560.jpg?t=st=1735255085~exp=1735258685~hmac=41e4cc0ba502404ceb06ec0afb4ef2435f353087805de89f7404edc1df9ea25b&w=740")),
+                                                Center(
+                                                  child: Expanded(
+                                                    child: text(
+                                                        text:
+                                                        "There is no breakfast yet\n Waittttt!!",
+                                                        fontSize: 25,
+                                                        fontColor: secondaryColor),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+
                                         ],
                                       ),
                                     ),
@@ -188,7 +206,23 @@ class _ShowFoodState extends State<ShowFood> {
                                           if (FoodCubit.get(context)
                                                   .foodData["lunch"] ==
                                               null)
-                                            text(text: "There is no lunch "),
+                                            Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: [
+                                                Image(
+                                                    image: NetworkImage(
+                                                        "https://img.freepik.com/free-psd/lying-down-watching-movies-home-3d-illustration_1419-2560.jpg?t=st=1735255085~exp=1735258685~hmac=41e4cc0ba502404ceb06ec0afb4ef2435f353087805de89f7404edc1df9ea25b&w=740")),
+                                                Center(
+                                                  child: Expanded(
+                                                    child: text(
+                                                        text:
+                                                        "There is no lunch yet\n Waittttt!!",
+                                                        fontSize: 25,
+                                                        fontColor: secondaryColor),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
                                         ],
                                       ),
                                     ),
@@ -226,13 +260,29 @@ class _ShowFoodState extends State<ShowFood> {
                                           if (FoodCubit.get(context)
                                                   .foodData["dinner"] ==
                                               null)
-                                            text(text: "There is no dinner "),
+                                            Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: [
+                                                Image(
+                                                    image: NetworkImage(
+                                                        "https://img.freepik.com/free-psd/lying-down-watching-movies-home-3d-illustration_1419-2560.jpg?t=st=1735255085~exp=1735258685~hmac=41e4cc0ba502404ceb06ec0afb4ef2435f353087805de89f7404edc1df9ea25b&w=740")),
+                                                Center(
+                                                  child: Expanded(
+                                                    child: text(
+                                                        text:
+                                                        "There is no dinner yet\n Waittttt!!",
+                                                        fontSize: 25,
+                                                        fontColor: secondaryColor),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
                                         ],
                                       ),
                                     ),
                                   if (this.widget.isAdmin)
                                     defaultButton(context,
-                                        label: "Add an Food",
+                                        label: "Add Food",
                                         color: Colors.grey[700],
                                         fontSize: 20, function: () {
                                       moveForward(

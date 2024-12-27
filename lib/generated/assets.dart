@@ -4,12 +4,10 @@ class Assets {
 
   static const String assetsAddUser = 'assets/add_user.png';
   static const String assetsAllUsers = 'assets/all_users.png';
-  static const String assetsFemale = 'assets/female.png';
   static const String assetsFood = 'assets/food.png';
   static const String assetsFoodImg = 'assets/foodImg.png';
   static const String assetsImg = 'assets/img.png';
   static const String assetsImg1 = 'assets/img_1.png';
-  static const String assetsMale = 'assets/male.png';
   static const String assetsPersonalData = 'assets/personal_data.png';
   static const String assetsSupplements = 'assets/supplements.png';
   static const String assetsTips = 'assets/tips.png';

@@ -6,6 +6,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:online_coach/logic/supplements/supplements_cubit.dart';
 import 'package:online_coach/presentation/admin/add_supplements.dart';
 import 'package:online_coach/shared/components/components.dart';
+import 'package:online_coach/shared/constants/constants.dart';
 
 class ShowSupplements extends StatelessWidget {
   final String uid;
@@ -74,7 +75,23 @@ class ShowSupplements extends StatelessWidget {
                             if (SupplementsCubit.get(context)
                                 .supplementsData
                                 .isEmpty)
-                              text(text: "There is no supplements"),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Image(
+                                      image: NetworkImage(
+                                          "https://img.freepik.com/free-psd/lying-down-watching-movies-home-3d-illustration_1419-2560.jpg?t=st=1735255085~exp=1735258685~hmac=41e4cc0ba502404ceb06ec0afb4ef2435f353087805de89f7404edc1df9ea25b&w=740")),
+                                  Center(
+                                    child: Expanded(
+                                      child: text(
+                                          text:
+                                          "There is no Supplements yet\n Waittttt!!",
+                                          fontSize: 25,
+                                          fontColor: secondaryColor),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             if (isAdmin)
                               defaultButton(context,
                                   label: "Add supplements",

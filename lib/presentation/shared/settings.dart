@@ -5,9 +5,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:online_coach/logic/userData/user_data_cubit.dart';
-import 'package:online_coach/presentation/user/update_data.dart';
-import 'package:online_coach/presentation/user/update_password.dart';
+import 'package:online_coach/presentation/shared/update_data.dart';
+import 'package:online_coach/presentation/shared/update_password.dart';
 import 'package:online_coach/shared/components/components.dart';
+import 'package:online_coach/shared/constants/constants.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import '../../shared/shared_preferences/shared_preferences.dart';
 import '../authentication/login.dart';
@@ -25,14 +26,29 @@ class Settings extends StatelessWidget {
       child:
           BlocConsumer<UserDataCubit, UserDataState>(builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(),
+          appBar: AppBar(
+            actions: [
+              TextButton(onPressed: (){
+        if (isAdmin) {
+              SharedPrefs.removeData(key: "UID");
+              SharedPrefs.removeData(key: "type");
+              moveForwardAndRemove(
+                  context: context, page: const Login());
+            } else {
+              SharedPrefs.removeData(key: "UID");
+              SharedPrefs.removeData(key: "type");
+              moveForward(context: context, page: Login());
+            }
+              }, child: text(text: "Logout" , fontColor: Colors.red))
+            ],
+          ),
           body: state is! LoadingGetSpecificUserDataState
               ? Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Center(child: text(text: "Call me ", fontSize: 24)),
+                      Center(child: text(text: "Contact Coach", fontSize: 24)),
                       Row(
                         children: [
                           Expanded(
@@ -110,20 +126,20 @@ class Settings extends StatelessWidget {
                           moveForward(context: context, page: UpdatePassword());
                         },
                         child: Container(
+                          height: 50.h,
                           width: MediaQuery.of(context).size.width,
-                          height: 60.h,
                           decoration: BoxDecoration(
-                            color: HexColor("#E8E9EB"),
-                            borderRadius: BorderRadius.circular(25),
+                            color: Colors.amber,
+                            borderRadius: BorderRadius.circular(15),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Row(
                               children: [
                                 text(
-                                    text: "Update password",
+                                    text: "Change password",
                                     fontColor: Colors.black,
-                                    fontSize: 20,
+                                    fontSize: 17,
                                     textAlign: TextAlign.start),
                                 Spacer(),
                                 Icon(
@@ -136,45 +152,7 @@ class Settings extends StatelessWidget {
                         ),
                       ),
                       verticalSpace(space: 20),
-                      InkWell(
-                        onTap: () {
-                          if (isAdmin) {
-                            SharedPrefs.removeData(key: "UID");
-                            SharedPrefs.removeData(key: "type");
-                            moveForwardAndRemove(
-                                context: context, page: const Login());
-                          } else {
-                            SharedPrefs.removeData(key: "UID");
-                            SharedPrefs.removeData(key: "type");
-                            moveForward(context: context, page: Login());
-                          }
-                        },
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: 60.h,
-                          decoration: BoxDecoration(
-                            color: HexColor("#E8E9EB"),
-                            borderRadius: BorderRadius.circular(25),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              children: [
-                                text(
-                                    text: "Logout",
-                                    fontColor: Colors.black,
-                                    fontSize: 20,
-                                    textAlign: TextAlign.start),
-                                Spacer(),
-                                Icon(
-                                  Icons.keyboard_arrow_right_rounded,
-                                  size: 30,
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
+
                       Spacer(),
                       if (!isAdmin)
                         InkWell(
@@ -194,24 +172,26 @@ class Settings extends StatelessWidget {
                                   context: context, page: const Login());
                             }
                           },
-                          child: Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: 60.h,
-                            decoration: BoxDecoration(
-                              color: HexColor("#B80F0A"),
-                              borderRadius: BorderRadius.circular(25),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  text(
-                                      text: "Delete account",
-                                      fontColor: Colors.black,
-                                      fontSize: 20,
-                                      textAlign: TextAlign.start),
-                                ],
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              decoration: BoxDecoration(
+                                color: HexColor("#B80F0A"),
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    text(
+                                        text: "Delete account",
+                                        fontColor: Colors.black,
+                                        fontSize: 20,
+                                        textAlign: TextAlign.start),
+                                  ],
+                                ),
                               ),
                             ),
                           ),

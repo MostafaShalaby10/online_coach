@@ -33,7 +33,7 @@ class TipsPage extends StatelessWidget {
         children: [
           const Image(
             fit: BoxFit.cover,
-            image: AssetImage("assets/tips.png"),
+            image: NetworkImage("https://s3-alpha-sig.figma.com/img/09a2/cebe/5e188ff8ed9974f2103aa922b218489b?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=QeQhpVB0RevfnLIQ7JlWkmJbX6aYogU5my3q6ycmxrDFrDnSwQZDk14wMwuOcW~jQXmEo0Yqy1UeXya1LXb-DuuYOmt1~Ub7fz5Mp7H0P-mvp5wkAz9TBV9vSBs8CLvr-4dd3U3bQHKViAGgR27usiofNToHzexHvdcm9JNXsHbbceP5n3ZuI19Vew-9CmZfx9RNTQ-BHyjVD99mI3b7svEvH6QfLuuf8tPCo~4sKEsR4sM~Nlldaqb3Vxzpq~-vluDGFX6AjaDi1dBYgR0qaURe6RoQ9U~eq8aT-c9ctu27bWd~WT4hoWij6IY1NX~6qO5qzwgkphLek0VSuqlm1g__"),
           ),
           Padding(
             padding: const EdgeInsets.all(15.0),

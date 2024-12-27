@@ -15,7 +15,7 @@ class Adduser extends StatefulWidget {
   State<Adduser> createState() => _AdduserState();
 }
 
-String _selecterRole = "user";
+String _selectRole = "user";
 bool isPass = true;
 TextEditingController emailController = TextEditingController();
 TextEditingController passwordController = TextEditingController();
@@ -92,10 +92,10 @@ class _AdduserState extends State<Adduser> {
                             child: ListTile(
                               leading: Radio<String>(
                                 value: 'user',
-                                groupValue: _selecterRole,
+                                groupValue: _selectRole,
                                 onChanged: (value) {
                                   setState(() {
-                                    _selecterRole = value!;
+                                    _selectRole = value!;
                                   });
                                 },
                                 activeColor: secondaryColor,
@@ -108,10 +108,10 @@ class _AdduserState extends State<Adduser> {
                             child: ListTile(
                               leading: Radio<String>(
                                 value: 'admin',
-                                groupValue: _selecterRole,
+                                groupValue: _selectRole,
                                 onChanged: (value) {
                                   setState(() {
-                                    _selecterRole = value!;
+                                    _selectRole = value!;
                                   });
                                 },
                                 activeColor: secondaryColor,
@@ -141,7 +141,7 @@ class _AdduserState extends State<Adduser> {
                                             phone: phoneController.text,
                                             email: emailController.text,
                                             password:
-                                                passwordController.text, role: _selecterRole);
+                                                passwordController.text, role: _selectRole);
                                   } else {
                                     toastMSG(
                                         text:

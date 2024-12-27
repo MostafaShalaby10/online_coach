@@ -47,13 +47,13 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           appBarTheme: AppBarTheme(
             iconTheme: const IconThemeData(color: Colors.white),
-            backgroundColor: Colors.black,
+            backgroundColor: Colors.grey[900],
             centerTitle: true,
             elevation: 0,
             surfaceTintColor: Colors.black,
           ),
           // background color for app
-          scaffoldBackgroundColor: HexColor("#000000"),
+          scaffoldBackgroundColor: Colors.grey[900],
           primaryColor: Colors.white,
           // font family for the app
           textTheme: GoogleFonts.latoTextTheme(textTheme).copyWith(

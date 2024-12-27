@@ -8,15 +8,17 @@ class PersonalData extends StatefulWidget {
 
   @override
   State<PersonalData> createState() => _PersonalDataState();
+
 }
 
-String _selectedGender = 'male';
-TextEditingController ageController = TextEditingController();
-TextEditingController tallController = TextEditingController();
-TextEditingController weightController = TextEditingController();
-var formKey = GlobalKey<FormState>();
+
 
 class _PersonalDataState extends State<PersonalData> {
+  String _selectedGender = 'male';
+  TextEditingController ageController = TextEditingController();
+  TextEditingController tallController = TextEditingController();
+  TextEditingController weightController = TextEditingController();
+  var formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(

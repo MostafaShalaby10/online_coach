@@ -91,17 +91,23 @@ class _LoginState extends State<Login> {
                           fallback: (context) =>
                               const Center(child: CircularProgressIndicator())),
                       verticalSpace(space: 15),
-                      Center(
-                          child: TextButton(
-                              onPressed: () {
-                                moveForward(
-                                    context: context, page: ResetPassword());
-                              },
-                              child: text(
-                                  text: "Reset password",
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.bold,
-                                  fontColor: HexColor("#FF0000")))),
+                      Row(
+                        children: [
+                          text(text: "Forget password?") ,
+                          horizontalSpace(space: 10),
+                          InkWell(
+                            onTap: (){
+                              moveForward(
+                                  context: context, page: ResetPassword());
+                            },
+                            child: text(
+                                text: "Reset password",
+                                fontSize: 17,
+                                fontWeight: FontWeight.w300,
+                                fontColor: HexColor("#FF0000")),
+                          ),
+                        ],
+                      ),
 
                       /*    Center(
                         child: TextButton(

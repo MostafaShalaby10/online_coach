@@ -16,14 +16,15 @@ class GymHistory extends StatefulWidget {
   State<GymHistory> createState() => _GymHistoryState();
 }
 
-TextEditingController goalController = TextEditingController();
-TextEditingController periodController = TextEditingController();
-TextEditingController dailyController = TextEditingController();
-TextEditingController weeklyController = TextEditingController();
-String _gymHistory = 'yes';
-var formKey = GlobalKey<FormState>();
+
 
 class _GymHistoryState extends State<GymHistory> {
+  TextEditingController goalController = TextEditingController();
+  TextEditingController periodController = TextEditingController();
+  TextEditingController dailyController = TextEditingController();
+  TextEditingController weeklyController = TextEditingController();
+  String _gymHistory = 'yes';
+  var formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -94,14 +95,14 @@ class _GymHistoryState extends State<GymHistory> {
                             controller: periodController),
                       verticalSpace(space: 20),
                       textField(
-                          type: TextInputType.text,
+                          type: TextInputType.number,
                           label:
                               "How many times can you go to the gym weekly ",
                           prefixIcon: FontAwesomeIcons.calendar,
                           controller: weeklyController),
                       verticalSpace(space: 20),
                       textField(
-                          type: TextInputType.text,
+                          type: TextInputType.number,
                           label:
                               "How many times can you go to the gym daily ",
                           prefixIcon: FontAwesomeIcons.calendar,

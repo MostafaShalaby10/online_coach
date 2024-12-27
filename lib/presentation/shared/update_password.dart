@@ -12,13 +12,14 @@ class UpdatePassword extends StatefulWidget {
   State<UpdatePassword> createState() => _UpdatePasswordState();
 }
 
-bool isPassword = true;
-bool isCONFPassword = true;
-var formKey = GlobalKey<FormState>();
-TextEditingController confPasswordController = TextEditingController();
-TextEditingController passwordController = TextEditingController();
+
 
 class _UpdatePasswordState extends State<UpdatePassword> {
+  bool isPassword = true;
+  bool isCONFPassword = true;
+  var formKey = GlobalKey<FormState>();
+  TextEditingController confPasswordController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -89,10 +90,10 @@ class _UpdatePasswordState extends State<UpdatePassword> {
         );
       }, listener: (context, state) {
         if (state is SuccessfullyUpdatePasswordState) {
-          moveForwardAndRemove(context: context, page: const Login());
-          toastMSG(text: "Password changed successfully", color: Colors.green);
           passwordController.clear();
           confPasswordController.clear();
+          toastMSG(text: "Password changed successfully", color: Colors.green);
+          moveForwardAndRemove(context: context, page: const Login());
         } else if (state is ErrorUpdatePasswordState) {
           toastMSG(text: state.error.toString(), color: Colors.red);
         }
