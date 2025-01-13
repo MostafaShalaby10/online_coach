@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -75,7 +76,7 @@ class Days extends StatelessWidget {
                   Image(
                       fit: BoxFit.cover,
                       width: MediaQuery.of(context).size.width,
-                      image: NetworkImage(isExercise?exerciseImages[index]:foodImages[index])),
+                      image: CachedNetworkImageProvider(isExercise?exerciseImages[index]:foodImages[index])),
                   Padding(
                     padding:  EdgeInsets.symmetric(
                         vertical: 10.h, horizontal: 20.w),

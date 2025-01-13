@@ -6,13 +6,17 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:online_coach/presentation/authentication/login.dart';
 import 'package:online_coach/presentation/shared/home_page.dart';
 import 'package:online_coach/shared/shared_preferences/shared_preferences.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
       overlays: [SystemUiOverlay.bottom]);
-
+  await Supabase.initialize(
+    url: 'https://fxnkbcnmlsvvnmmpkeif.supabase.co',
+    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ4bmtiY25tbHN2dm5tbXBrZWlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzY3MjM1MDYsImV4cCI6MjA1MjI5OTUwNn0.Z5DTSMD4Z-4rcMQ3qwp0nsk3CbGCYtlYl6a20U0WfaE',
+  );
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await SharedPrefs.init();
   await SystemChrome.setPreferredOrientations([

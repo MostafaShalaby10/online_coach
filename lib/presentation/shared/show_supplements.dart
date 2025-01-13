@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -79,16 +80,14 @@ class ShowSupplements extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Image(
-                                      image: NetworkImage(
+                                      image: CachedNetworkImageProvider(
                                           "https://img.freepik.com/free-psd/lying-down-watching-movies-home-3d-illustration_1419-2560.jpg?t=st=1735255085~exp=1735258685~hmac=41e4cc0ba502404ceb06ec0afb4ef2435f353087805de89f7404edc1df9ea25b&w=740")),
                                   Center(
-                                    child: Expanded(
-                                      child: text(
-                                          text:
-                                          "There is no Supplements yet\n Waittttt!!",
-                                          fontSize: 25,
-                                          fontColor: secondaryColor),
-                                    ),
+                                    child: text(
+                                        text:
+                                        "There is no Supplements yet\n Waittttt!!",
+                                        fontSize: 25,
+                                        fontColor: secondaryColor),
                                   ),
                                 ],
                               ),

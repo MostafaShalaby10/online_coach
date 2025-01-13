@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -102,16 +103,14 @@ class AllUsers extends StatelessWidget {
 
                             children: [
                               Image(
-                                  image: NetworkImage(
+                                  image: CachedNetworkImageProvider(
                                       "https://img.freepik.com/free-vector/glitch-error-404-page_23-2148105404.jpg?t=st=1735266602~exp=1735270202~hmac=ca600eb33b96958b9e0e41e8bdaffeab8505789aceaea46670f581cf7847408f&w=740")),
                               Center(
-                                child: Expanded(
-                                  child: text(
-                                      text:
-                                          "There is no users yet!!",
-                                      fontSize: 25,
-                                      fontColor: secondaryColor),
-                                ),
+                                child: text(
+                                    text:
+                                        "There is no users yet!!",
+                                    fontSize: 25,
+                                    fontColor: secondaryColor),
                               ),
                             ],
                           ),
